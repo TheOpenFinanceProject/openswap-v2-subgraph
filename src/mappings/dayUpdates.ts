@@ -14,6 +14,8 @@ export function updateUniswapDayData(event: EthereumEvent): UniswapDayData {
     uniswapDayData = new UniswapDayData(dayID.toString())
     uniswapDayData.date = dayStartTimestamp
     uniswapDayData.dailyVolumeUSD = ZERO_BD
+
+
     uniswapDayData.dailyVolumeETH = ZERO_BD
     uniswapDayData.totalVolumeUSD = ZERO_BD
     uniswapDayData.totalVolumeETH = ZERO_BD
@@ -44,6 +46,8 @@ export function updatePairDayData(event: EthereumEvent): PairDayData {
     pairDayData.token0 = pair.token0
     pairDayData.token1 = pair.token1
     pairDayData.pairAddress = event.address
+
+    
     pairDayData.dailyVolumeToken0 = ZERO_BD
     pairDayData.dailyVolumeToken1 = ZERO_BD
     pairDayData.dailyVolumeUSD = ZERO_BD
