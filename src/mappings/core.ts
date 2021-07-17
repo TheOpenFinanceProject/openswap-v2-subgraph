@@ -35,13 +35,6 @@ export function handleTransfer(event: Transfer): void {
     return
   }
 
-
-
-
-
-
-  
-
   let factory = UniswapFactory.load(FACTORY_ADDRESS)
   let transactionHash = event.transaction.hash.toHexString()
 
