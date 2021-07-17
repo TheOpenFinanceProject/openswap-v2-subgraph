@@ -11,8 +11,8 @@ const USDT_WETH_PAIR = '0x0546cD83b1d08eDA759078EBd79823Ec2163921f' // created b
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
   let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
-  let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token1
+  let usdcPair = Pair.load(USDT_WETH_PAIR) // usdc is token0 
+  let usdtPair = Pair.load(USDC_WETH_PAIR) // usdt is token1 
 
   // all 3 have been created
   if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
