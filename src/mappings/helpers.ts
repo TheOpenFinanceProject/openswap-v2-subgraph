@@ -55,11 +55,8 @@ export function isNullEthValue(value: string): boolean {
 
 export function fetchTokenSymbol(tokenAddress: Address): string {
   // hard coded overrides
-  if (tokenAddress.toHexString() == '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a') {
-    return 'DGD'
-  }
-  if (tokenAddress.toHexString() == '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9') {
-    return 'AAVE'
+  if (tokenAddress.toHexString() == '0xe176ebe47d621b984a73036b9da5d834411ef734') {
+    return 'eBUSD'
   }
 
   let contract = ERC20.bind(tokenAddress)
@@ -68,6 +65,9 @@ export function fetchTokenSymbol(tokenAddress: Address): string {
   // try types string and bytes32 for symbol
   let symbolValue = 'unknown'
   let symbolResult = contract.try_symbol()
+  symbolValue = symbolResult.value
+
+  let Result = renameSymbol(symbolValue.toString());
   if (symbolResult.reverted) {
     let symbolResultBytes = contractSymbolBytes.try_symbol()
     if (!symbolResultBytes.reverted) {
@@ -77,10 +77,26 @@ export function fetchTokenSymbol(tokenAddress: Address): string {
       }
     }
   } else {
-    symbolValue = symbolResult.value
+    symbolValue = Result
   }
 
   return symbolValue
+}
+
+function renameSymbol(symbol: String): String {
+  if(symbol.charAt(0) == '1'){
+    let e = 'e';
+    symbol = symbol.slice(1)
+    symbol = e.concat(symbol)
+    return symbol
+  }else if(symbol.slice(0,3) == 'bsc'){
+    let b = 'b';
+    symbol = symbol.slice(3)
+    symbol = b.concat(symbol)
+    return symbol
+  }else{
+    return symbol
+  }
 }
 
 export function fetchTokenName(tokenAddress: Address): string {
