@@ -65,18 +65,18 @@ export function fetchTokenSymbol(tokenAddress: Address): string {
   // try types string and bytes32 for symbol
   let symbolValue = 'unknown'
   let symbolResult = contract.try_symbol()
-  symbolValue = symbolResult.value
 
-  let Result = renameSymbol(symbolValue.toString());
+  
   if (symbolResult.reverted) {
     let symbolResultBytes = contractSymbolBytes.try_symbol()
     if (!symbolResultBytes.reverted) {
       // for broken pairs that have no symbol function exposed
       if (!isNullEthValue(symbolResultBytes.value.toHexString())) {
-        symbolValue = symbolResultBytes.value.toString()
+        symbolValue = renameSymbol(symbolResultBytes.value.toString())
       }
     }
   } else {
+    let Result = renameSymbol(symbolResult.value.toString());
     symbolValue = Result
   }
 
