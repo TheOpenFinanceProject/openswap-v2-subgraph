@@ -57,6 +57,7 @@ let WHITELIST: string[] = [
   '0xb1f6e61e1e113625593a22fa6aa94f8052bc39e0', // BNB
   '0x582617bd8ca80d22d4432e63fda52d74dcdcee4c', // ADA
   '0x6e7be5b9b4c9953434cd83950d61408f1ccc3bee', // Matic--poly
+  '0xc0431ddcc0d213bf27ececa8c2362c0d0208c6dc', //openswap
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
